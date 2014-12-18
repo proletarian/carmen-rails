@@ -183,9 +183,8 @@ module ActionView
         html_options = html_options.stringify_keys
         add_default_name_and_id(html_options)
         priority_regions = options[:priority] || []
-        value = value(object)
-        opts = add_options(region_options_for_select(parent_region.subregions, 'CA', :priority => priority_regions), options, value)
-        Rails.logger.debug opts.inspect
+        value = value(options[:selected])
+        opts = add_options(region_options_for_select(parent_region.subregions, value, :priority => priority_regions), options, value)
         content_tag("select", opts, html_options)
       end
     end
